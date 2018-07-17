@@ -7,7 +7,19 @@ const express       = require("express");
 const bodyParser    = require("body-parser");
 const app           = express();
 
+//URL encoding converts characters into a format that can be transmitted over the Internet.
+//bodyParser.urlencoded returns middleware that only parses urlencoded bodies and only looks at requests where 
+//the Content-Type header matches the type option. This parser accepts only UTF-8 encoding of 
+//the body and supports automatic inflation of gzip and deflate encodings.
+
 app.use(bodyParser.urlencoded({ extended: true }));
+
+//To serve static files such as images, CSS files, and JavaScript files, 
+//use the express.static built-in middleware function in Express.
+//The function signature is:
+//express.static(root, [options])
+//The root argument specifies the root directory from which to serve static assets.
+
 app.use(express.static("public"));
 
 // The in-memory database of tweets. It's a basic object with an array in it.
