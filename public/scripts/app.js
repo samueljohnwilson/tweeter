@@ -8,31 +8,63 @@
 
   function createTweetElement(obj) {
 
+    const intervals = {
+      year: (1000 * 24 * 60 * 60 * 365), 
+      month: (1000 * 30 * 24 * 60 * 60), 
+      week: (1000 * 7 * 24 * 60 * 60), 
+      day: (1000 * 24 * 60 * 60), 
+      hour: (1000 * 60 * 60), 
+      minute: (1000 * 60)
+    };
+
     let timePassed = "";
-    let elapsedTime = Math.floor((Date.now() - obj.created_at)/(1000 * 24 * 60 * 60 * 365));
-    if (elapsedTime % (365 * 24 * 60 * 60) > 0) {
-      timePassed += elapsedTime + " years ago";
-    } else if (elapsedTime % (30 * 24 * 60 * 60) > 0) {
-      timePassed += elapsedTime + " months ago";
-    } else if (elapsedTime % (7 * 24 * 60 * 60) > 0) {
-      timePassed += elapsedTime + " weeks ago";
-    } else if (elapsedTime % (24 * 60  * 60) > 0) {
-      timePassed += elapsedTime + " days ago";
-    } else if (elapsedTime % (60 * 60) > 0) {
-      timePassed += elapsedTime + " hours ago";
-    } else if (elapsedTime % (60 * 60) > 0) {
-    timePassed += elapsedTime + " hours ago";
-    } else if (elapsedTime % 60 > 0) {
-      timePassed += elapsedTime + " minutes ago";
-    } else {
-      timePassed = "Just now";
+    const elapsedTime = Math.floor(Date.now() - obj.created_at);
+    const keys = Object.keys(intervals);
+    const vals = Object.values(intervals);
+
+    for (let i = 0; i < keys.length; i++) {
+
+      if ((elapsedTime / vals[keys.length - 1]) < 1) {
+        timePassed = "Just now";
+        break;
+      }
+
+      if (Math.floor(elapsedTime / vals[i] === 1)) {
+        timePassed += Math.floor(elapsedTime / vals[i]) + " " + keys[i];
+        break;
+      } else if (Math.floor(elapsedTime / vals[i] > 1)) {
+        timePassed += Math.floor(elapsedTime / vals[i]) + " " + keys[i] + "s";
+        break;
+      }
     }
 
-    $(".avatar").attr("src", obj.user.avatars.small);
-    $(".twit-handle").text(obj.user.handle);
-    $(".twit-name").text(obj.user.name)
-    $(".tweet-text").text(obj.content.text)
-    $(".tweet-time").text(timePassed);
+    let $tweet = $("<article>").addClass("tweet");
+    let $header = $("<header>").addClass("tweet-header");
+    let $avatar = $("<img>").addClass("avatar");
+    let $twitName = $("<h2>").addClass("twit-name");
+    let $twitHandle = $("<p>").addClass("twit-handle");
+    let $tweetText = $("<p>").addClass("tweet-text");
+    let $tweetTime = $("<h5>").addClass("tweet-time");
+    let $flag = $("<img>").addClass("icons");
+    let $retweet = $("<img>").addClass("icons");
+    let $heart = $("<img>").addClass("icons");
+    let $footer = $("<footer>").addClass("tweet-footer");
+
+    $avatar.attr("src", obj.user.avatars.small)
+    $twitHandle.text(obj.user.handle);
+    $twitName.text(obj.user.name)
+    $tweetText.text(obj.content.text)
+    $tweetTime.text(timePassed);
+    $flag.attr("src", "/images/flag.png");
+    $retweet.attr("src", "/images/retweet.png");
+    $heart.attr("src", "/images/heart.png");
+
+    $header.append($avatar, $twitHandle, $twitName)
+    $footer.append($tweetTime, $heart, $retweet, $flag)
+
+    $tweet.append($header, $tweetText, $footer);
+
+    return $tweet.html();
 
   };
 
@@ -52,25 +84,9 @@
     "created_at": 1461116232227
   }
 
-  var $tweet = createTweetElement(tweetData);
-
+  let $tweet = createTweetElement(tweetData);
+ 
   $('#tweets-container').append($tweet);
 
 });
 
-      // <section class="tweet-display">
-      //   <article>
-      //     <header class="tweet-header">
-      //       <img class="avatar" src="/images/bird.png"></img>
-      //       <h2 class="twit-name"> Tweeter Name</h2>
-      //       <p class="twit-handle">@Twit</p>
-      //     </header>
-      //     <p class="tweet-text">Here's a tweet</p>
-      //     <footer class="tweet-footer">
-      //       <h5 class="tweet-time">8 days ago</h1>
-      //       <img class="icons" src="/images/flag.png">
-      //       <img class="icons" src="/images/retweet.png">
-      //       <img class="icons" src="/images/heart.png">
-      //     </footer>
-      //   </article>
-      // </section>
