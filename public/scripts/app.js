@@ -75,17 +75,35 @@
 
   function renderTweets(tweetArr) {
 
+    if (tweetArr.length === 1) {
+      let $tweet = createTweetElement(tweetArr[0]);
+      $('#tweets-container').prepend($tweet)
+    }
+
     for (let i = 0; i < tweetArr.length; i++) {
        let $tweet = createTweetElement(tweetArr[i]);
        $('#tweets-container').append($tweet)
-       console.log(JSON.stringify($tweet))
     }
 
   };
 
-  renderTweets(data);
+  //renderTweets(data);
 
-  //Posts new tweets to /tweets using Ajax
+  function loadTweets() {
+    $.ajax('/tweets', { method: 'GET' })
+    .then(function(tweetJSON) {
+      renderTweets(tweetJSON.reverse())
+    })
+  }
+
+  function newTweet() {
+    $.ajax('/tweets', { method: 'GET' })
+    .then(function(tweetJSON) {
+      let newTweet = [];
+      newTweet.push(tweetJSON[tweetJSON.length - 1])
+      renderTweets(newTweet);
+    })
+  }
 
   $('form').on('submit', function(event) {
     event.preventDefault();
@@ -104,17 +122,11 @@
     })
     .then(function(tweet) {
       data.push(tweet);
+      newTweet();
     })
   });
 
-  function loadTweets(){
-    $.ajax('/tweets', { method: 'GET' })
-    .then(function(tweetJSON) {
-      renderTweets(tweetJSON)
-    })
-  }
-
-  loadTweets();
+loadTweets();
 
 });
 
