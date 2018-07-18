@@ -89,6 +89,14 @@
 
   $('form').on('submit', function(event) {
     event.preventDefault();
+    if ($("form textarea").val() === "") {
+      alert("Your tweet is empty, you fool!")
+      return;
+    } else if ($("form textarea").val().length > 140){
+      alert("There's a character limit, you buffoon!")
+      return;
+    }
+
     $.ajax({
       url: '/tweets',
       method: 'POST',
