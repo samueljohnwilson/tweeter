@@ -87,7 +87,6 @@
        let $tweet = createTweetElement(tweetArr[i]);
        $('#tweets-container').append($tweet)
     }
-
   };
 
   function loadTweets() {
