@@ -9,16 +9,41 @@
   padding-left: 2em;
 }
 
-#nav-bar .header {
+.header {
   color: #e8fdff;
   font-size: 2em;
   padding-left: 10px;
   float: left;
-  line-height: 2em;
+  margin-top: 20px;
 }
 
-#nav-bar .logo {
+.logo {
   height: 80px;
   width: 80px;
   float: left;
+}
+
+.compose {
+  height: 50px;
+  width: 90px;
+  float: right;
+  border-style: solid;
+  border-color: grey;
+  background-color: #fffaf0;
+  border-radius: 5px;
+  margin-top: 15px;
+  color: #244751;
+}
+
+#compose-button {
+  padding: 1.5em;
+  padding-right: 30px;
+  padding-top: 15px;
+  margin: 0px;
+}
+
+.compose:hover {
+  border-color: black;
+  color: black;
+  filter: brightness(101%);
 }

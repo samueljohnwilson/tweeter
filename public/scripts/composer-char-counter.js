@@ -11,8 +11,6 @@ $(document).ready(() => {
     } else if (140 - currentLength >= 0) {
       counter.toggleClass("negative-counter", false);
     }
-
   });
-
 });
 

@@ -1,6 +1,7 @@
 textarea {
   padding: 0.25em;
   width: 100%;
+  word-wrap: break-word;
 }
 
 
@@ -11,7 +12,16 @@ textarea {
 
 .new-tweet {
   background-color: #fffaf0;
+  border: solid;
+  border-color: grey;
+  border-radius: 5px;
   padding: 0.5em;
+}
+
+.new-tweet:hover {
+  border-color: black;
+  color: black;
+  filter: brightness(101%);
 }
 
 .counter {
@@ -27,5 +37,9 @@ textarea {
 .negative-counter {
   position: relative;
   left: 80%;
+  color: red;
+}
+
+.error {
   color: red;
 }

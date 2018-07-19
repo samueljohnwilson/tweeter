@@ -6,39 +6,42 @@
 
  $(document).ready(() => {
 
+    function timeSince(obj) {
+
+      const intervals = {
+        year: (1000 * 24 * 60 * 60 * 365), 
+        month: (1000 * 30 * 24 * 60 * 60), 
+        week: (1000 * 7 * 24 * 60 * 60), 
+        day: (1000 * 24 * 60 * 60), 
+        hour: (1000 * 60 * 60), 
+        minute: (1000 * 60)
+      };
+
+      let timePassed = "";
+      const elapsedTime = Math.floor(Date.now() - obj.created_at);
+      const keys = Object.keys(intervals);
+      const vals = Object.values(intervals);
+
+      for (let i = 0; i < keys.length; i++) {
+
+        if ((elapsedTime / vals[keys.length - 1]) < 1) {
+          return timePassed = "Just now";
+        }
+
+        if (Math.floor(elapsedTime / vals[i] === 1)) {
+          return timePassed += Math.floor(elapsedTime / vals[i]) + " " + keys[i] + " ago";
+          
+        } else if (Math.floor(elapsedTime / vals[i] > 1)) {
+          return timePassed += Math.floor(elapsedTime / vals[i]) + " " + keys[i] + "s ago";
+        }
+      }
+    }
+
   const data = [];
 
   function createTweetElement(obj) {
 
-    const intervals = {
-      year: (1000 * 24 * 60 * 60 * 365), 
-      month: (1000 * 30 * 24 * 60 * 60), 
-      week: (1000 * 7 * 24 * 60 * 60), 
-      day: (1000 * 24 * 60 * 60), 
-      hour: (1000 * 60 * 60), 
-      minute: (1000 * 60)
-    };
-
-    let timePassed = "";
-    const elapsedTime = Math.floor(Date.now() - obj.created_at);
-    const keys = Object.keys(intervals);
-    const vals = Object.values(intervals);
-
-    for (let i = 0; i < keys.length; i++) {
-
-      if ((elapsedTime / vals[keys.length - 1]) < 1) {
-        timePassed = "Just now";
-        break;
-      }
-
-      if (Math.floor(elapsedTime / vals[i] === 1)) {
-        timePassed += Math.floor(elapsedTime / vals[i]) + " " + keys[i] + " ago";
-        break;
-      } else if (Math.floor(elapsedTime / vals[i] > 1)) {
-        timePassed += Math.floor(elapsedTime / vals[i]) + " " + keys[i] + "s ago";
-        break;
-      }
-    }
+    let timePassed = timeSince(obj);
 
     let $section = $("<section>").addClass("tweets-container");
     let $tweet = $("<article>").addClass("tweet");
@@ -87,8 +90,6 @@
 
   };
 
-  //renderTweets(data);
-
   function loadTweets() {
     $.ajax('/tweets', { method: 'GET' })
     .then(function(tweetJSON) {
@@ -105,14 +106,22 @@
     })
   }
 
+  $("#empty-tweet").hide();
+  $("#too-long").hide();
+
   $('form').on('submit', function(event) {
     event.preventDefault();
     if ($("form textarea").val() === "") {
-      alert("Your tweet is empty, you fool!")
+      $("#empty-tweet").slideDown();
+      $("#too-long").slideUp();
       return;
     } else if ($("form textarea").val().length > 140){
-      alert("There's a character limit, you buffoon!")
+      $("#too-long").slideDown();
+      $("#empty-tweet").slideUp();
       return;
+    } else {
+      $("#empty-tweet").slideUp();
+      $("#too-long").slideUp();
     }
 
     $.ajax({
