@@ -10,6 +10,8 @@ const MONGODB_URI = "mongodb://localhost:27017/tweeter";
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
+//Accesses the MongoDB client and passes db to tweetRoutes
+
 MongoClient.connect(MONGODB_URI, (err, db) => {
   if (err) {
     console.log(`Failed to connect: ${MONGODB_URI}`);

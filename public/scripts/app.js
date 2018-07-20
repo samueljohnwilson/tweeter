@@ -6,6 +6,8 @@
 
  $(document).ready(() => {
 
+  //Calculates the time that has elapsed since a tweet was posted
+
     function timeSince(obj) {
 
       const intervals = {
@@ -37,7 +39,7 @@
       }
     }
 
-  const data = [];
+  //Appends tweet articles to the html document
 
   function createTweetElement(obj) {
 
@@ -76,6 +78,8 @@
 
   };
 
+  //Renders tweets to the page
+
   function renderTweets(tweetArr) {
 
     if (tweetArr.length === 1) {
@@ -91,12 +95,16 @@
     }
   };
 
+  //Renders all tweets on page load
+
   function loadTweets() {
     $.ajax('/tweets', { method: 'GET' })
     .then(function(tweetJSON) {
       renderTweets(tweetJSON.reverse())
     })
   }
+
+  //Renders the newest tweet on submit
 
   function newTweet() {
     $.ajax('/tweets', { method: 'GET' })
@@ -107,6 +115,10 @@
     })
   }
 
+  //Form submission triggers a number of CSS style changes and a POST request, which 
+  //ultimately results in the tweet rendering on the page
+
+  const data = [];
   $("#empty-tweet").hide();
   $("#too-long").hide();
 

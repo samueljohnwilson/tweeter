@@ -15,7 +15,6 @@ textarea {
   border-color: grey;
   border-radius: 5px;
   padding: 0.5em;
-  word-wrap: break-word;
 }
 
 .new-tweet:hover {
