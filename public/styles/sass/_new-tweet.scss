@@ -1,3 +1,9 @@
+$primary-color: #7C9EB2;
+$secondary-color: #A0A0C0;
+$secondary-hover: #7F7492;
+$background-color: #231123;
+$border-and-text: #171717;
+
 textarea {
   padding: 0.25em;
   width: 100%;
@@ -5,22 +11,22 @@ textarea {
 }
 
 #compose_tweet {
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid black;
   height: auto;
 }
 
 .new-tweet {
-  background-color: #fffaf0;
+  background-color: $secondary-color;
   border: solid;
-  border-color: grey;
-  border-radius: 5px;
+  border-color: $border-and-text;
+  border-radius: 0.25em;
   padding: 0.5em;
 }
 
 .new-tweet:hover {
   border-color: black;
   color: black;
-  filter: brightness(101%);
+  background-color: $secondary-hover;
 }
 
 .counter {

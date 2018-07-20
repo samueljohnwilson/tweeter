@@ -6,6 +6,7 @@
 html {
   box-sizing: border-box;
 }
+
 *, *:before, *:after {
   box-sizing: inherit;
 }
@@ -13,7 +14,6 @@ html {
 /*
  * Global layout stuff
  */
-
 body {
   margin: 0;
   color: #244751;
@@ -23,17 +23,193 @@ body {
 /*
  * Additional CSS can be defined below or in other CSS files, as per instructions
  */
+#nav-bar {
+  height: 80px;
+  width: 100%;
+  background-color: #7C9EB2;
+  color: #171717;
+  position: fixed;
+  top: 0;
+  padding-right: 2em;
+  padding-left: 2em;
+  z-index: 1;
+}
+#nav-bar .header {
+  color: #171717;
+  font-size: 2em;
+  padding-left: 0.5em;
+  float: left;
+  margin-top: 0.75em;
+  position: fixed;
+}
+#nav-bar .logo {
+  height: 5em;
+  width: 5em;
+  float: left;
+}
+#nav-bar .compose {
+  position: fixed;
+  right: 1.25em;
+  height: 3em;
+  width: 5.5em;
+  float: right;
+  border-style: solid;
+  border-color: #171717;
+  background-color: #A0A0C0;
+  border-radius: 5px;
+  margin-top: 15px;
+  color: #171717;
+}
+#nav-bar #compose-button {
+  padding: 1.5em;
+  padding-right: 2em;
+  padding-top: 1em;
+  margin: 0;
+}
+#nav-bar .compose:hover {
+  border-color: black;
+  background-color: #7F7492;
+  color: black;
+}
 
- body {
+textarea {
+  padding: 0.25em;
+  width: 100%;
+  word-wrap: break-word;
+}
+
+#compose_tweet {
+  border-bottom: 1px solid black;
+  height: auto;
+}
+
+.new-tweet {
+  background-color: #A0A0C0;
+  border: solid;
+  border-color: #171717;
+  border-radius: 0.25em;
+  padding: 0.5em;
+}
+
+.new-tweet:hover {
+  border-color: black;
+  color: black;
+  background-color: #7F7492;
+}
+
+.counter {
+  position: relative;
+  left: 80%;
+}
+
+.positive-counter {
+  position: relative;
+  left: 80%;
+}
+
+.negative-counter {
+  position: relative;
+  left: 80%;
+  color: red;
+}
+
+.error {
+  color: red;
+}
+
+#tweets-container {
+  margin-top: 1em;
+}
+#tweets-container .tweet {
+  min-height: 9em;
+  border-color: #171717;
+  border-style: solid;
+  border-radius: 0.5em;
+  position: relative;
+  overflow-wrap: break-word;
+}
+#tweets-container .tweet .tweet-header {
+  width: 100%;
+  height: 4em;
+  background-color: #7C9EB2;
+  padding: 0;
+  border-top-right-radius: 0.25em;
+  border-top-left-radius: 0.25em;
+}
+#tweets-container .tweet .avatar {
+  height: 2.5em;
+  width: 2.5em;
+  float: left;
+  border-style: solid;
+  border-width: 1px;
+  margin: 0.5em;
+  border-radius: 0.25em;
+}
+#tweets-container .tweet .twit-handle {
+  float: right;
+  position: relative;
+  top: 10%;
+  margin: 0;
+  padding-right: 0.5em;
+}
+#tweets-container .tweet .twit-name {
+  float: left;
+  position: relative;
+  top: 10%;
+  margin: 0;
+}
+#tweets-container .tweet-text {
+  width: 100%;
+  float: left;
+  clear: both;
+  padding: 0.5em;
+  margin: 0;
+  overflow-wrap: break-word;
+}
+#tweets-container .tweet-footer {
+  width: 100%;
+  height: 1.25em;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  position: absolute;
+  bottom: 0;
+  border-bottom-right-radius: 0.25em;
+  border-bottom-left-radius: 0.25em;
+}
+#tweets-container .tweet-footer .tweet-time {
+  margin: 0;
+  padding-bottom: 0.5em;
+  float: left;
+}
+#tweets-container .tweet-footer .icons {
+  visibility: hidden;
+  padding-bottom: 2px;
+  height: 1em;
+  width: 1em;
+  float: right;
+}
+
+.tweet:hover {
+  filter: brightness(110%);
+  border-color: black;
+  color: black;
+}
+
+.tweet:hover .icons {
+  visibility: visible;
+}
+
+body {
   font-family: "Roboto Condensed", sans-serif;
- }
+  color: #171717;
+}
 
- main {
-  width: 450px;
+main {
+  width: 28em;
   margin: auto;
   position: relative;
-  top: 100px;
- }
+  top: 5.5em;
+}
 
 h2 {
   margin-top: 0;
@@ -42,3 +218,5 @@ h2 {
 article {
   margin-top: 0.5em;
 }
+
+/*# sourceMappingURL=layout.css.map */

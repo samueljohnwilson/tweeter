@@ -1,0 +1,99 @@
+$primary-color: #7C9EB2;
+$secondary-color: #A0A0C0;
+$secondary-hover: #7F7492;
+$background-color: #231123;
+$border-and-text: #171717;
+
+#tweets-container {
+  margin-top: 1em;
+
+  .tweet {
+    min-height: 9em;
+    border-color: $border-and-text;
+    border-style: solid;
+    border-radius: 0.5em;
+    position: relative;
+    overflow-wrap: break-word;
+  
+
+    .tweet-header {
+      width: 100%;
+      height: 4em;
+      background-color: $primary-color;
+      padding: 0;
+      border-top-right-radius: 0.25em;
+      border-top-left-radius: 0.25em;
+    }
+
+      .avatar {
+        height: 2.5em;
+        width: 2.5em;
+        float: left;
+        border-style: solid;
+        border-width: 1px;
+        margin: 0.5em;
+        border-radius: 0.25em;
+      }
+
+      .twit-handle {
+        float: right;
+        position: relative;
+        top: 10%;
+        margin: 0;
+        padding-right: 0.5em;
+      }
+
+
+      .twit-name {
+        float: left;
+        position: relative;
+        top: 10%;
+        margin: 0;
+      }
+    }
+
+    .tweet-text {
+      width: 100%;
+      float: left;
+      clear: both;
+      padding: 0.5em;
+      margin: 0;
+      overflow-wrap: break-word;
+    }
+
+    .tweet-footer {
+      width: 100%;
+      height: 1.25em;
+      padding-left: 0.5em;
+      padding-right: 0.5em;
+      position: absolute;
+      bottom: 0;
+      border-bottom-right-radius: 0.25em;
+      border-bottom-left-radius: 0.25em;
+    
+
+      .tweet-time {
+        margin: 0;
+        padding-bottom: 0.5em;
+        float: left;
+      }
+
+      .icons {
+        visibility: hidden;
+        padding-bottom: 2px;
+        height: 1em;
+        width: 1em;
+        float: right;
+      }
+    } 
+}
+
+.tweet:hover {
+  filter: brightness(110%);
+  border-color: black;
+  color: black;
+}
+
+.tweet:hover .icons {
+  visibility: visible;
+}
