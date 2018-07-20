@@ -1,7 +1,13 @@
+$primary-color: #98B2AB;
+$secondary-color: #7E8A83;
+$secondary-hover: #7899AD
+$background-color: #F0F3F6;
+$border-and-text: #1B233B;
+
 #nav-bar {
   height: 80px;
   width: 100%;
-  background-color: #00a087;
+  background-color: $primary-color;
   color: #e8fdff;
   position: fixed;
   top: 0;
@@ -32,7 +38,7 @@
   width: 90px;
   float: right;
   border-style: solid;
-  border-color: grey;
+  border-color: gray;
   background-color: #fffaf0;
   border-radius: 5px;
   margin-top: 15px;

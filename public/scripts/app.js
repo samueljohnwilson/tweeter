@@ -81,11 +81,13 @@
     if (tweetArr.length === 1) {
       let $tweet = createTweetElement(tweetArr[0]);
       $('#tweets-container').prepend($tweet)
-    }
 
-    for (let i = 0; i < tweetArr.length; i++) {
+    } else {
+
+      for (let i = 0; i < tweetArr.length; i++) {
        let $tweet = createTweetElement(tweetArr[i]);
        $('#tweets-container').append($tweet)
+      }
     }
   };
 
@@ -99,9 +101,9 @@
   function newTweet() {
     $.ajax('/tweets', { method: 'GET' })
     .then(function(tweetJSON) {
-      let newTweet = [];
-      newTweet.push(tweetJSON[tweetJSON.length - 1])
-      renderTweets(newTweet);
+      let newTweets = [];
+      newTweets.push(tweetJSON[tweetJSON.length - 1])
+      renderTweets(newTweets);
     })
   }
 
@@ -131,6 +133,8 @@
     .then(function(tweet) {
       data.push(tweet);
       newTweet();
+      $("#text-input").val("");
+      $(".counter").text(140);
     })
   });
 
