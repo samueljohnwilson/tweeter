@@ -12,3 +12,11 @@ Tweets are created by user inputs, stored to the database, and rendered to the p
 - Chance 
 - MD5
 - MongoDB
+
+## Screenshots
+
+!["Screenshot of 'compose tweet' box"](https://github.com/samueljohnwilson/tweeter/blob/master/docs/compose-tweet.png)
+
+!["Screenshot of nav bar"](https://github.com/samueljohnwilson/tweeter/blob/master/docs/nav-bar.png)
+
+!["Screenshot of tweets](https://github.com/samueljohnwilson/tweeter/blob/master/docs/tweets.png)
